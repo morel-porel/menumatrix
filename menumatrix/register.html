@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Italian Cuisine - Registration</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Favicons -->
+        <link href="img/favicon.ico" rel="icon">
+        <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600|Pacifico" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+        <!-- Bootstrap CSS File -->
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Font Awesome -->
+        <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+        <!-- Main Stylesheet File -->
+        <link href="css/style.css" rel="stylesheet">
+        
+        <style>
+            body {
+                background: url('img/logo.png') no-repeat center center fixed;
+                background-size: contain;
+                background-color: #f8f9fa;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .register-container {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }
+            
+            .auth-card {
+                background-color: rgba(255, 255, 255, 0.95);
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                width: 100%;
+                max-width: 800px;
+                padding: 30px;
+            }
+            
+            .auth-card-header {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            
+            .auth-card-footer {
+                text-align: center;
+                margin-top: 20px;
+            }
+            
+            footer {
+                background-color: #f8f9fa;
+                padding: 20px 0;
+                margin-top: auto;
+            }
+            
+            .customer-fields, .employee-fields {
+                display: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="register-container">
+            <div class="auth-card">
+                <div class="auth-card-header">
+                    <h3>Create Your Account</h3>
+                    <p class="lead">Join us to start ordering delicious Italian cuisine</p>
+                </div>
+                <div class="auth-card-body">
+                    <form id="registerForm" action="registerHandler.php" method="post">
+                        <div class="form-group">
+                            <label for="userType">Account Type</label>
+                            <select class="form-control" id="userType" name="userType" required>
+                                <option value="customer">Customer</option>
+                                <option value="employee">Employee</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="firstName">First Name</label>
+                                <input type="text" class="form-control" id="firstName" name="InputFirstName" placeholder="Enter first name" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" name="InputLastName" placeholder="Enter last name" required>
+                            </div>
+                        </div>
+
+                        <!-- Customer Fields -->
+                        <div class="customer-fields">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" name="InputPhone" placeholder="Enter your phone number">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" class="form-control" id="email" name="InputEmail" placeholder="Enter your email">
+                                <small class="form-text text-muted">We'll never share your email</small>
+                            </div>
+                        </div>
+
+                        <!-- Employee Fields -->
+                        <div class="employee-fields">
+                            <div class="form-group">
+                                <label for="role">Role</label>
+                                <select class="form-control" id="role" name="InputRole">
+                                    <option value="chef">Chef</option>
+                                    <option value="manager">Manager</option>
+                                    <option value="supervisor">Shift Supervisor</option>
+                                    <option value="crewMember">Crew Member</option>
+                                    <option value="diningStaff">Dining Staff</option>
+                                    <option value="janitor">Janitor/Janitress</option>
+                                    <option value="delivery">Delivery</option>
+                                </select>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="shiftStart">Shift Start Time</label>
+                                    <input type="time" class="form-control" id="shiftStart" name="InputShiftStart">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="shiftEnd">Shift End Time</label>
+                                    <input type="time" class="form-control" id="shiftEnd" name="InputShiftEnd">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="password">Password</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password" name="InputPassword" placeholder="Create password" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary toggle-password" type="button">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <small class="form-text text-muted">Minimum 8 characters</small>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="confirmPassword" name="ConfirmPassword" placeholder="Confirm password" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#confirmPassword">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                                <label class="form-check-label" for="termsCheck">
+                                    I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" name="btnCreateAccount">Create Account</button>
+                    </form>
+                </div>
+                <div class="auth-card-footer">
+                    <p class="text-center">Already have an account? <a href="login.html">Login</a></p>
+                    <p class="text-center"><a href="index.html">Back</a></p>
+                </div>
+            </div>
+        </div>
+
+        <footer id="footer" class="footer-padding">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="copyright">
+                            <p>&copy; <span id="year"></span> Italian Cuisine. All Rights Reserved</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="social-links">
+                            <a href="#" class="social-icon"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="social-icon"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fa fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fa fa-yelp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- JavaScript Libraries -->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        
+        <!-- Main Javascript File -->
+        <script src="js/main.js"></script>
+        
+        <script>
+            // Set current year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+            
+            // Toggle password visibility
+            $('.toggle-password').click(function() {
+                const target = $(this).data('target') || '#password';
+                const passwordInput = $(target);
+                const icon = $(this).find('i');
+                
+                if (passwordInput.attr('type') === 'password') {
+                    passwordInput.attr('type', 'text');
+                    icon.removeClass('fa-eye').addClass('fa-eye-slash');
+                } else {
+                    passwordInput.attr('type', 'password');
+                    icon.removeClass('fa-eye-slash').addClass('fa-eye');
+                }
+            });
+            
+            // Form submission validation
+            $('#registerForm').submit(function(e) {
+                // Validate password match
+                if ($('#password').val() !== $('#confirmPassword').val()) {
+                    alert('Passwords do not match!');
+                    return false;
+                }
+                
+                // Validate terms checkbox
+                if (!$('#termsCheck').is(':checked')) {
+                    alert('You must agree to the Terms of Service and Privacy Policy');
+                    return false;
+                }
+            });
+
+            // Dynamic field handling
+            $(document).ready(function() {
+                $('#userType').change(function() {
+                    const userType = $(this).val();
+                    
+                    // Hide all conditional fields first
+                    $('.customer-fields, .employee-fields').hide();
+                    $('.customer-fields input, .employee-fields input, .employee-fields select').prop('required', false);
+                    
+                    // Show fields based on selection
+                    if (userType === 'customer') {
+                        $('.customer-fields').show();
+                        $('.customer-fields input').prop('required', true);
+                    } else if (userType === 'employee') {
+                        $('.employee-fields').show();
+                        $('.employee-fields input, .employee-fields select').prop('required', true);
+                    }
+                }).trigger('change'); // Initialize on page load
+            });
+        </script>
+    </body>
+</html>
